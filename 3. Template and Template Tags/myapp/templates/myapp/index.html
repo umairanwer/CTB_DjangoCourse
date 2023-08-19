@@ -1,0 +1,21 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Index{% endblock title %}
+
+{% block content %}
+    <h1>This is Index Page
+        <a href="{% url 'myapp:home'%}">Go To Home Page</a>
+    </h1>
+    <h2>List of Pages</h2>
+    <ul>
+        {% for page in pages %}
+        <li>{{page}}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>List of Courses</h2>
+
+    {% for course in courses%}
+        <li>{{course}}</li>
+    {% endfor %}
+{% endblock  %}
