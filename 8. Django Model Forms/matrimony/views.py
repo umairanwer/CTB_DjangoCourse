@@ -32,3 +32,8 @@ def ContactView(request):
     else:
         form = ContactForm()
     return render(request, 'matrimony/contact.html', {'form':form})
+
+def NewProfileView(request):
+    form = ContactForm()
+
+    return render(request, 'matrimony/new_profile.html', {'form':form})
