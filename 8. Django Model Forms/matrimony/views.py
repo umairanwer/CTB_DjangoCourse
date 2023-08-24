@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Profile
-from .forms import ContactForm
+from .forms import ContactForm, ProfileForm
 
 # Create your views here.
 
@@ -34,6 +34,13 @@ def ContactView(request):
     return render(request, 'matrimony/contact.html', {'form':form})
 
 def NewProfileView(request):
-    form = ContactForm()
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('matrimony:profile_list')
+
+    else:
+        form = ProfileForm()
 
     return render(request, 'matrimony/new_profile.html', {'form':form})
